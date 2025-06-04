@@ -11,8 +11,7 @@ const ShopDashboard = () => {
   useEffect(() => {
     const verifyShopAccess = async () => {
       try {
-        // Extract shop name from subdomain
-        // const hostParts = window.location.hostname.split('.');
+    
         const shopName = window.location.hostname.split('.').length > 2 ? hostParts[0] : null;
         
         if (!shopName) {
@@ -23,7 +22,7 @@ const ShopDashboard = () => {
         setShop(data.shop);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to verify shop access');
-        // navigate('/'); // Redirect to main app if verification fails
+       
       } finally {
         setLoading(false);
       }
@@ -56,7 +55,7 @@ const ShopDashboard = () => {
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold">This is {shop} shop</h1>
-      {/* Add shop-specific content here */}
+ 
     </div>
   );
 };

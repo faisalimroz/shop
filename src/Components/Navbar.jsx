@@ -48,18 +48,14 @@ const Navbar = () => {
     };
 
     const handleShopClick = (shopName) => {
-        // First verify the shop access
+     
         api.get(`/verify-shop?shop=${shopName}`)
           .then(() => {
-            // Only redirect if verification succeeds
+           
             window.location.href = `http://${shopName}.localhost:5173/shop-dashboard`;
           })
           .catch(error => {
-            Swal.fire({
-              title: "Access Denied",
-              text: error.response?.data?.message || "You don't have access to this shop",
-              icon: "error"
-            });
+            console.error("Access Denied:", error.response?.data?.message || "You don't have access to this shop");
           });
       };
 
@@ -75,32 +71,32 @@ const Navbar = () => {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    src="https://i.ibb.co/dwNncf18/image.png" />
                             </div>
                         </div>
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {/* Shop List Header */}
+                       
                             <li className="menu-title">
                                 <span>My Shops</span>
                             </li>
                             
-                            {/* Loading State */}
+                  
                             {loading && (
                                 <li>
                                     <span className="text-sm text-gray-500">Loading shops...</span>
                                 </li>
                             )}
                             
-                            {/* Empty State */}
+                     
                             {!loading && shops.length === 0 && (
                                 <li>
                                     <span className="text-sm text-gray-500">No shops available</span>
                                 </li>
                             )}
                             
-                            {/* Shop List */}
+                    
                             {shops.map((shop, index) => (
                                 <li key={index}>
                                     <a onClick={() => handleShopClick(shop)}>
@@ -109,10 +105,9 @@ const Navbar = () => {
                                 </li>
                             ))}
                             
-                            {/* Divider */}
+               
                             <li><hr className="my-1" /></li>
-                            
-                            {/* Logout Button */}
+                         
                             <li>
                                 <a onClick={handleLogout}>Logout</a>
                             </li>
